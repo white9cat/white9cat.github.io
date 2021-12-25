@@ -1,0 +1,104 @@
+
+<head>
+<meta charset="UTF-8">
+</head>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+function getRemainingTime() {  
+    /*show1();*/
+    colon();
+    if($('#TheRemainingTimeSS').text()=='00'){
+        if($('#TheRemainingTimeMM').text()=='00'){
+            $('#TheRemainingTimeHH').text(twoDigits(parseInt($('#TheRemainingTimeHH').text())-1));
+            $('#TheRemainingTimeMM').text('59');
+        }
+        else{
+            $('#TheRemainingTimeMM').text(twoDigits(parseInt($('#TheRemainingTimeMM').text())-1));
+            $('#TheRemainingTimeSS').text('59');
+        }
+    }
+    else{
+        $('#TheRemainingTimeSS').text(twoDigits(parseInt($('#TheRemainingTimeSS').text())-1));
+    }
+}  
+function show1() {
+    if(parseFloat($('#show1').css('opacity'))<1){
+        $('#show1').css('opacity',parseFloat($('#show1').css('opacity'))+0.02);
+    }
+}
+function colon() { 
+    /*if($('#colonShow').text()=='0'){
+        $('.colon').css({'color':'black'});
+        $('#colonShow').text('1');
+    }
+    else{
+        $('.colon').css({'color':'red'});
+        $('#colonShow').text('0');
+    }*/
+}
+function twoDigits(val) {  
+    if (val < 10) return "0" + val; return val;  
+}    
+$(function () {  
+    $("html").click(function(){
+        setInterval(getRemainingTime, 1000); 
+        setInterval(show1, 100); 
+    });
+    
+
+});
+</script>
+<style type="text/css">
+@font-face {
+  font-family: Bakudai;
+  src: url(https://github.com/max32002/bakudaifont/raw/master/webfont/Bakudai-Regular.woff2) format("woff2")
+  , url(https://github.com/max32002/bakudaifont/raw/master/webfont/Bakudai-Regular.woff) format("woff");
+}
+html{
+  cursor: none;
+}
+span{
+  font-family:'Bakudai','Cursed Timer ULiL';
+  color:#D80000;
+
+}
+#show1{
+  opacity: 0;
+}
+#TheRemainingTime {
+  position:fixed;
+  font-size:100px;
+  top:45%;
+  left:50%;
+  transform: translate(-50%, -50%)rotate(3deg);
+}
+#tr2{
+  position:fixed;
+  top:58%;
+  left:50%;
+  transform: translate(-50%, -50%)rotate(5deg);
+  font-size:120px;
+}
+#tr2 span:nth-child(1) {
+  font-size:100px;
+}
+
+#tr2 span:nth-child(2) {
+  font-size:150px;
+}
+
+#tr2 span:nth-child(3) {
+  font-size:120px;
+}
+</style>
+<html style='background-color:black'>
+<span id='colonShow' style='display:none'>0</span>
+<div id='show1'>
+<div id='TheRemainingTime'><span id='TheRemainingTimeHH'>04</span><span class='colon'>:</span><span id='TheRemainingTimeMM'>27</span><span class='colon'>:</span><span id='TheRemainingTimeSS'>48</span><span>後</span><br/>
+</div>
+<div id='tr2'><span>你會被</span><span>分屍</span><span>而死</span></div>
+</div>
+<div id='show2'>
+
+</div>
+</html>
